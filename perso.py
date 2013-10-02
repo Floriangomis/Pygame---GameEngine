@@ -20,16 +20,16 @@ class Perso(object):
 	def deplacer(self, direction):
 		if direction == "droite":
 			self.direction = self.img_droite
-			self.x = self.x+1
+			self.x = self.x+3
 
 		if direction == "gauche":
 			self.direction = self.img_gauche
-			self.x = self.x-1
+			self.x = self.x-3
 
 		if direction == "haut":
 			self.direction = self.img_haut
-			self.y = self.y-1
+			self.y = self.y-3
 
 		if direction == "bas":
 			self.direction = self.img_bas
-			self.y = self.y+1
+			self.y = self.y+3
