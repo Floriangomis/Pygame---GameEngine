@@ -1,4 +1,5 @@
 import pygame
+import sys, os
 from pygame.locals import *
 
 pygame.init()
@@ -19,3 +20,4 @@ while continuer:
         for event in pygame.event.get():
                 if event.type == QUIT:
                         continuer = 0
+                if 
