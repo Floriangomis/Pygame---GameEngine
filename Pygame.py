@@ -9,13 +9,13 @@ fond = pygame.image.load("background.jpg").convert()
 fenetre.blit(fond,(0,0))
 
 perso = pygame.image.load("perso.png").convert_alpha()
-fenetre.blit(perso, (10,200))
+fenetre.blit(perso, (100,200))
 
 pygame.display.flip()
 
 continuer = 1
 
 while continuer:
-	for event in pygame.event.get():
+        for event in pygame.event.get():
                 if event.type == QUIT:
                         continuer = 0
