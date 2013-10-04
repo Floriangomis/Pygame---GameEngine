@@ -1,4 +1,6 @@
 import pygame
+from pygame.locals import *
+
 class Perso(object):
 
 	def __init__(self, img_droite, img_gauche, img_haut, img_bas):
@@ -10,26 +12,31 @@ class Perso(object):
 		self.img_haut = pygame.image.load(img_haut).convert_alpha()
 		self.img_bas = pygame.image.load(img_bas).convert_alpha()
 
-		#Position du personnage en cases et en pixels
-		self.x = 100
-		self.y = 100
-
 		#Direction par defaut
 		self.direction = self.img_droite 
 
-	def deplacer(self, direction):
+		#Position du personnage en cases et en pixels
+		self.position_perso = self.direction.get_rect()
+
+	def deplacer(self, direction, fenetre):
 		if direction == "droite":
 			self.direction = self.img_droite
-			self.x = self.x+3
+			self.position_perso = self.position_perso.move(3,0)
+			fenetre.blit(self.direction, self.position_perso)
+
 
 		if direction == "gauche":
 			self.direction = self.img_gauche
-			self.x = self.x-3
+			self.position_perso = self.position_perso.move(-3,0)
+			fenetre.blit(self.direction, self.position_perso)
+
 
 		if direction == "haut":
 			self.direction = self.img_haut
-			self.y = self.y-3
+			self.position_perso = self.position_perso.move(0,-3)
+			fenetre.blit(self.direction, self.position_perso)
 
 		if direction == "bas":
 			self.direction = self.img_bas
-			self.y = self.y+3
+			self.position_perso = self.position_perso.move(0,3)
+			fenetre.blit(self.direction, self.position_perso)
