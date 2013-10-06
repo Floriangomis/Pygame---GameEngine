@@ -18,6 +18,7 @@ class Perso(object):
 		#Position du personnage en cases et en pixels
 		self.position_perso = self.direction.get_rect()
 
+
 	def deplacer(self, direction, fenetre):
 		if direction == "droite":
 			self.direction = self.img_droite
@@ -40,3 +41,10 @@ class Perso(object):
 			self.direction = self.img_bas
 			self.position_perso = self.position_perso.move(0,3)
 			fenetre.blit(self.direction, self.position_perso)
+
+	def setPosition(self, positionX, positionY):
+		 self.position = self.position_perso.move(positionX, positionY)
+		 return self.position
+
+	def setPositionInit(self, positionX, positionY):
+		 self.position_perso = self.position_perso.move(positionX, positionY)	 

@@ -20,3 +20,5 @@ class tileMap(object):
 				rect = (tile_x*width, tile_y*height, width, height)
 				line.append(image.subsurface(rect))
 		return tile_table
+
+		
