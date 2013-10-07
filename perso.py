@@ -3,7 +3,7 @@ from pygame.locals import *
 
 class Perso(object):
 
-	def __init__(self, img_droite, img_gauche, img_haut, img_bas):
+	def __init__(self, img_droite, img_gauche, img_haut, img_bas, positionX, positionY):
 		super(Perso, self).__init__()
 
 		# On charge les images pour les differentes positions
@@ -17,6 +17,7 @@ class Perso(object):
 
 		#Position du personnage en cases et en pixels
 		self.position_perso = self.direction.get_rect()
+		self.position_perso = self.position_perso.move(positionX, positionY)
 
 
 	def deplacer(self, direction, fenetre):
@@ -43,8 +44,5 @@ class Perso(object):
 			fenetre.blit(self.direction, self.position_perso)
 
 	def setPosition(self, positionX, positionY):
-		 self.position = self.position_perso.move(positionX, positionY)
-		 return self.position
-
-	def setPositionInit(self, positionX, positionY):
-		 self.position_perso = self.position_perso.move(positionX, positionY)	 
+		 return self.position_perso.move(positionX, positionY)
+		  
