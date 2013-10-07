@@ -2,7 +2,7 @@ import pygame
 
 class Cursor(object):
 	""" A cursor object used in menus """
-	def __init__(self, image= "./ressources/images/hand.png", ypos=[500], xpos=[500]):
+	def __init__(self, image= "./ressources/images/hand.png", ypos=[500], xpos=[660]):
 		# Cursor positionning
 		self.ypos = ypos
 		self.yposindex = 0
