@@ -2,23 +2,22 @@ import pygame
 from pygame.locals import *
 
 class tileMap(object):
-
-	def __init__(self, tileset):
+	"""docstring for tileMap"""
+	def __init__(self, arrayMap, dicoTile, fenetre):
 		super(tileMap, self).__init__()
-		self.tileset = tileset
-	
-	def load_tile_table(self, width, height):
-		image = pygame.image.load(self.tileset).convert_alpha()
-		image_width, image_height = image.get_size()
+		self.arrayMap = arrayMap
+		self.dicoTile = dicoTile
+		self.screen = fenetre
 
-		tile_table = []
 
-		for tile_x in range(0, image_width/width):
-			line = []
-			tile_table.append(line)
-			for tile_y in range(0, image_height/height):
-				rect = (tile_x*width, tile_y*height, width, height)
-				line.append(image.subsurface(rect))
-		return tile_table
 
-		
+	def mapRender(self):		
+
+		for width in range(len(self.arrayMap)):
+			for height in range(len(self.arrayMap[width])):
+				if self.arrayMap[width][height] == '0':
+					self.screen.blit(self.dicoTile[0].getSurface(), (height*48, (width)*48))
+				if self.arrayMap[width][height] == '1':
+					self.screen.blit(self.dicoTile[1].getSurface(), (height*48, (width)*48))
+				if self.arrayMap[width][height] == '4':
+					self.screen.blit(self.dicoTile[4].getSurface(), (height*48, (width)*48))
