@@ -22,7 +22,6 @@ class tileSet(object):
 				self.dictTileSet[i]=(image.subsurface(rect))
 				i = i+1
 
-
 	def genererDicoTile(self):
 		self.dicttTile[0] = Tile(False, self.dictTileSet[26])
 		self.dicttTile[1] = Tile(True, self.dictTileSet[22])

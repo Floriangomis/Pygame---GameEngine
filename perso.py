@@ -8,6 +8,8 @@ class Perso(object):
 
 		self.screen = fenetre
 
+		self.currentTile = 0
+
 		# On charge les images pour les differentes positions
 		self.img_droite = pygame.image.load(img_droite).convert_alpha()
 		self.img_gauche = pygame.image.load(img_gauche).convert_alpha()
@@ -45,5 +47,18 @@ class Perso(object):
 			self.position_perso = self.position_perso.move(0,3)
 			self.screen.blit(self.direction, self.position_perso)
 		
-		#met a jour la position du perso
+		#Met a jour la position du perso
 		self.screen.blit(self.direction, self.position_perso)
+
+	def testTile(self, perso, tileMap):
+		self.currentTile = tileMap.getTile(self.position_perso.left, self.position_perso.top)
+		print self.currentTile.rect
+		print perso.position_perso
+		if perso.position_perso.colliderect(self.currentTile.rect) and self.currentTile.passable == True:
+			self.currentTile.getSurface().fill((255,255,255,255))
+			print "On passe"
+		
+
+
+		
+
