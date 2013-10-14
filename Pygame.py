@@ -7,13 +7,16 @@ from map import Map
 from menu import Menu
 import settings as settings
 from perso import Perso
+from npc import Npc
 from pygame.locals import *
 
 # Initialisation de l objet Pygame et Creation de la surface sur laquelle on va dessiner les element
 pygame.init()
 fenetre = pygame.display.set_mode((800, 600))
+
 #Creation des perso Pj et Pnj
-perso = Perso("./ressources/images/dk_droite.png","./ressources/images/dk_gauche.png","./ressources/images/dk_haut.png","./ressources/images/dk_bas.png", 100, 130, fenetre)
+perso = Perso("./ressources/images/dk_droite.png","./ressources/images/dk_gauche.png","./ressources/images/dk_haut.png","./ressources/images/dk_bas.png", 400, 130, fenetre)
+Npc = Npc("./ressources/images/dk_bas.png", 540, 250, fenetre, perso)
 
 
 #On charge la carte en memoire puis on cree un tableau qui contient les case de l image.
@@ -23,10 +26,8 @@ dicoTile = tileSet.genererDicoTile()
 # Creation du tableau qui represente la map
 map = Map('level.lvl')
 Matrix = map.getMyArrayMap()
-
 # Creation de l objet TileMap ou on va gerer le rendu de la map
 tileMap = tileMap(Matrix, dicoTile, fenetre)
-
 #LA BOUCLE PRINCIPALE DEMARRE ICI 
 continuer = 1
 mon_horloge = pygame.time.Clock()
@@ -41,21 +42,19 @@ while continuer:
 		menu = Menu(fenetre)
 		menu.open_menu()
 
-	if keys[K_TAB]:
-		perso.testTile()
-
 	# Remplace le fond
 	fenetre.fill(pygame.Color("Black"))
+
 	#Rendu de la map
 	tileMap.mapRender()
+
 	#On gere le Perso Ici (Mouvement et affichage a l ecran)
-	perso.event()
+	perso.event(tileMap)
+	Npc.event(tileMap)
+
 	#Souris position
 	#mouse_pos = pygame.mouse.get_pos()
 	#print mouse_pos[1], mouse_pos[1]
-	#On test de recuperer un tile
-	
-	perso.testTile(perso, tileMap)
 
 	pygame.display.flip()
 	mon_horloge.tick(60)
