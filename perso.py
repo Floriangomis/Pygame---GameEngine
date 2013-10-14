@@ -9,6 +9,7 @@ class Perso(object):
 		self.screen = fenetre
 
 		self.currentTile = 0
+		self.nextTitle = 0
 
 		# On charge les images pour les differentes positions
 		self.img_droite = pygame.image.load(img_droite).convert_alpha()
@@ -16,49 +17,40 @@ class Perso(object):
 		self.img_haut = pygame.image.load(img_haut).convert_alpha()
 		self.img_bas = pygame.image.load(img_bas).convert_alpha()
 
-		#Direction par defaut
-		self.direction = self.img_droite
+		#imageDirection par defaut
+		self.imageDirection = self.img_droite
 
 		#Position du personnage en cases et en pixels
-		self.position_perso = self.direction.get_rect()
-		self.position_perso = self.position_perso.move(positionX, positionY)
+		self.rectPerso = self.imageDirection.get_rect()
+		self.rectPerso = self.rectPerso.move(positionX, positionY)
 
-	def event(self):
+	def event(self, tileMap):
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				continuer = 0
 
 		keys = pygame.key.get_pressed()
 
+		#if tileMap.getTile(self.rectPerso.top+3, self.rectPerso.left).passable != False:            ->>> Collision Test 		
 		if keys[K_RIGHT]:
-			self.direction = self.img_droite
-			self.position_perso = self.position_perso.move(3,0)
-			self.screen.blit(self.direction, self.position_perso)
+			self.imageDirection = self.img_droite 
+			if tileMap.getTile(self.rectPerso.top, self.rectPerso.left+33).passable == True and tileMap.getTile(self.rectPerso.top+30, self.rectPerso.left+33).passable == True:
+				self.rectPerso = self.rectPerso.move(3,0)
+				self.screen.blit(self.imageDirection, self.rectPerso)
 		if keys[K_LEFT]:
-			self.direction = self.img_gauche
-			self.position_perso = self.position_perso.move(-3,0)
-			self.screen.blit(self.direction, self.position_perso)
+			self.imageDirection = self.img_gauche
+			if tileMap.getTile(self.rectPerso.top, self.rectPerso.left-3).passable == True and tileMap.getTile(self.rectPerso.top+30, self.rectPerso.left-3).passable == True:
+				self.rectPerso = self.rectPerso.move(-3,0)
+				self.screen.blit(self.imageDirection, self.rectPerso)
 		if keys[K_UP]:
-			self.direction = self.img_haut
-			self.position_perso = self.position_perso.move(0,-3)
-			self.screen.blit(self.direction, self.position_perso)
+			self.imageDirection = self.img_haut
+			if tileMap.getTile(self.rectPerso.top-3, self.rectPerso.left).passable == True and tileMap.getTile(self.rectPerso.top-3, self.rectPerso.left+30).passable == True:
+				self.rectPerso = self.rectPerso.move(0,-3)
+				self.screen.blit(self.imageDirection, self.rectPerso)
 		if keys[K_DOWN]:
-			self.direction = self.img_bas
-			self.position_perso = self.position_perso.move(0,3)
-			self.screen.blit(self.direction, self.position_perso)
-		
-		#Met a jour la position du perso
-		self.screen.blit(self.direction, self.position_perso)
+			self.imageDirection = self.img_bas
+			if tileMap.getTile(self.rectPerso.top+33, self.rectPerso.left).passable == True and tileMap.getTile(self.rectPerso.top+33, self.rectPerso.left+30).passable == True:
+				self.rectPerso = self.rectPerso.move(0,3)
+				self.screen.blit(self.imageDirection, self.rectPerso)
 
-	def testTile(self, perso, tileMap):
-		self.currentTile = tileMap.getTile(self.position_perso.left, self.position_perso.top)
-		print self.currentTile.rect
-		print perso.position_perso
-		if perso.position_perso.colliderect(self.currentTile.rect) and self.currentTile.passable == True:
-			self.currentTile.getSurface().fill((255,255,255,255))
-			print "On passe"
-		
-
-
-		
-
+		self.screen.blit(self.imageDirection, self.rectPerso)
