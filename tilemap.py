@@ -31,5 +31,5 @@ class tileMap(object):
 				#print self.tileMap[height][width], height , width, self.tileMap[height][width].getSurface()
 				self.tileMap[height][width].draw(self.screen, self.tileMap[height][width].setPositionAndGet(width*48, height*48))
 
-	def getTile(self, posX, posY):
+	def getTile(self, posY, posX):
 		return self.tileMap[posY/48][posX/48]

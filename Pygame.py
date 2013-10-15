@@ -13,7 +13,7 @@ from pygame.locals import *
 pygame.init()
 fenetre = pygame.display.set_mode((800, 600))
 #Creation des perso Pj et Pnj
-perso = Perso("./ressources/images/dk_droite.png","./ressources/images/dk_gauche.png","./ressources/images/dk_haut.png","./ressources/images/dk_bas.png", 100, 130, fenetre)
+perso = Perso("./ressources/images/dk_droite.png","./ressources/images/dk_gauche.png","./ressources/images/dk_haut.png","./ressources/images/dk_bas.png", 400, 130, fenetre)
 
 
 #On charge la carte en memoire puis on cree un tableau qui contient les case de l image.
@@ -49,13 +49,13 @@ while continuer:
 	#Rendu de la map
 	tileMap.mapRender()
 	#On gere le Perso Ici (Mouvement et affichage a l ecran)
-	perso.event()
+	#perso.event()
 	#Souris position
 	#mouse_pos = pygame.mouse.get_pos()
 	#print mouse_pos[1], mouse_pos[1]
 	#On test de recuperer un tile
 	
-	perso.testTile(perso, tileMap)
+	perso.testTile(tileMap)
 
 	pygame.display.flip()
 	mon_horloge.tick(60)
