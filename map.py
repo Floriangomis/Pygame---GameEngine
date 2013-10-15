@@ -18,20 +18,7 @@ class Map(object):
 
 		# On recupere dans le fichier Level le niveau puis on construit un tableau a deux dimension
 		self.Matrix = [[0 for x in xrange(self.collone)] for x in xrange(self.ligne)]
-		self.Matrix[0].pop()
-		self.Matrix[1].pop()
-		self.Matrix[2].pop()
-		self.Matrix[3].pop()
-		self.Matrix[4].pop()
-		self.Matrix[5].pop()
-		self.Matrix[6].pop()
-		self.Matrix[7].pop()
-		self.Matrix[8].pop()
-		self.Matrix[9].pop()
-		self.Matrix[10].pop()
-		self.Matrix[11].pop()
-		self.Matrix[12].pop()
-		self.Matrix[13].pop()
+
 
 		h = 0
 		f = open(self.nomFichier, 'r')
