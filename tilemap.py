@@ -27,8 +27,7 @@ class tileMap(object):
 
 	def mapRender(self):
 		for height in range(len(self.tileMap)):
-			for width in range(len(self.tileMap[height])):
-				#print self.tileMap[height][width], height , width, self.tileMap[height][width].getSurface()
+			for width in range(len(self.tileMap[height])-1):
 				self.tileMap[height][width].draw(self.screen, self.tileMap[height][width].setPositionAndGet(width*48, height*48))
 
 	def getTile(self, posY, posX):

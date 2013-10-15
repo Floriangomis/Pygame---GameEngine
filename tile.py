@@ -18,10 +18,13 @@ class Tile(object):
 	def getSurface(self):
 		return self.surface
 
+	def getRect(self):
+		return self.rect
+
 	def setPositionAndGet(self, posX, posY):
 		self.x = posX
 		self.y = posY
-		self.rect = ((posX, posY), (self.surface.get_rect().width, self.surface.get_rect().height))
+		self.rect = pygame.Rect(posX, posY, self.surface.get_rect().width, self.surface.get_rect().height)
 		return self.rect
 
 	def draw(self, screen, position):
