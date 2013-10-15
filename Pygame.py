@@ -26,8 +26,15 @@ dicoTile = tileSet.genererDicoTile()
 # Creation du tableau qui represente la map
 map = Map('level.lvl')
 Matrix = map.getMyArrayMap()
+map2 = Map('level2.lvl')
+Matrix2 = map2.getMyArrayMap()
+
+listMatrix = []
+listMatrix.append(Matrix)
+listMatrix.append(Matrix2)
+
 # Creation de l objet TileMap ou on va gerer le rendu de la map
-tileMap = tileMap(Matrix, dicoTile, fenetre)
+tileMap = tileMap(listMatrix, dicoTile, fenetre)
 #LA BOUCLE PRINCIPALE DEMARRE ICI 
 continuer = 1
 mon_horloge = pygame.time.Clock()
@@ -41,9 +48,6 @@ while continuer:
 	if keys[K_ESCAPE]:
 		menu = Menu(fenetre)
 		menu.open_menu()
-
-	# Remplace le fond
-	fenetre.fill(pygame.Color("Black"))
 
 	#Rendu de la map
 	tileMap.mapRender()
