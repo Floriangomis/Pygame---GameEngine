@@ -24,7 +24,7 @@ class Perso(object):
 		self.rectPerso = self.imageDirection.get_rect()
 		self.rectPerso = self.rectPerso.move(positionX, positionY)
 
-	def event(self, tileMap):
+	def event(self, tileMap, camera):
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				continuer = 0
@@ -36,21 +36,21 @@ class Perso(object):
 			self.imageDirection = self.img_droite 
 			if tileMap.getTile(self.rectPerso.top, self.rectPerso.left+33).passable == True and tileMap.getTile(self.rectPerso.top+30, self.rectPerso.left+33).passable == True:
 				self.rectPerso = self.rectPerso.move(3,0)
-				self.screen.blit(self.imageDirection, self.rectPerso)
+				self.screen.blit(self.imageDirection,  camera.apply(self.rectPerso))
 		if keys[K_LEFT]:
 			self.imageDirection = self.img_gauche
 			if tileMap.getTile(self.rectPerso.top, self.rectPerso.left-3).passable == True and tileMap.getTile(self.rectPerso.top+30, self.rectPerso.left-3).passable == True:
 				self.rectPerso = self.rectPerso.move(-3,0)
-				self.screen.blit(self.imageDirection, self.rectPerso)
+				self.screen.blit(self.imageDirection,  camera.apply(self.rectPerso))
 		if keys[K_UP]:
 			self.imageDirection = self.img_haut
 			if tileMap.getTile(self.rectPerso.top-3, self.rectPerso.left).passable == True and tileMap.getTile(self.rectPerso.top-3, self.rectPerso.left+30).passable == True:
 				self.rectPerso = self.rectPerso.move(0,-3)
-				self.screen.blit(self.imageDirection, self.rectPerso)
+				self.screen.blit(self.imageDirection,  camera.apply(self.rectPerso))
 		if keys[K_DOWN]:
 			self.imageDirection = self.img_bas
 			if tileMap.getTile(self.rectPerso.top+33, self.rectPerso.left).passable == True and tileMap.getTile(self.rectPerso.top+33, self.rectPerso.left+30).passable == True:
 				self.rectPerso = self.rectPerso.move(0,3)
-				self.screen.blit(self.imageDirection, self.rectPerso)
+				self.screen.blit(self.imageDirection,  camera.apply(self.rectPerso))
 
-		self.screen.blit(self.imageDirection, self.rectPerso)
+		self.screen.blit(self.imageDirection, camera.apply(self.rectPerso))

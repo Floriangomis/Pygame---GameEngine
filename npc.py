@@ -21,12 +21,12 @@ class Npc(object):
 		self.rectNpc = self.imageDirection.get_rect()
 		self.rectNpc = self.rectNpc.move(positionX, positionY)
 
-	def event(self, tileMap):
+	def event(self, tileMap, camera):
 		if self.rectNpc.colliderect(self.hero.rectPerso):
 			print "Collision"
 
 		self.animationNpc(tileMap)
-		self.screen.blit(self.imageDirection, self.rectNpc)
+		self.screen.blit(self.imageDirection, camera.apply(self.rectNpc))
 
 	def animationNpc(self, tileMap):
 		if self.boolAlle == True:

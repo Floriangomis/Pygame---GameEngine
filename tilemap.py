@@ -26,11 +26,11 @@ class tileMap(object):
 						tile = Tile(False, surfaceC)
 						self.tileMap[x][height][width] = tile		
 
-	def mapRender(self):
+	def mapRender(self, camera):
 		for x in range(len(self.tileMap)):
 			for height in range(len(self.tileMap[x])):
 				for width in range(len(self.tileMap[x][height])):
-					self.tileMap[x][height][width].draw(self.screen, self.tileMap[x][height][width].setPositionAndGet(width*48, height*48))
+					self.tileMap[x][height][width].draw(self.screen, camera.apply(self.tileMap[x][height][width].setPositionAndGet(width*48, height*48)))
 
 	def getTile(self, posY, posX):
 		return self.tileMap[1][posY/48][posX/48]
