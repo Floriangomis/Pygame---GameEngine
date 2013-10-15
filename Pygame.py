@@ -57,5 +57,4 @@ while continuer:
 	#print mouse_pos[1], mouse_pos[1]
 
 	pygame.display.flip()
-
 	mon_horloge.tick(60)

@@ -54,4 +54,3 @@ class Perso(object):
 				self.screen.blit(self.imageDirection, self.rectPerso)
 
 		self.screen.blit(self.imageDirection, self.rectPerso)
-
