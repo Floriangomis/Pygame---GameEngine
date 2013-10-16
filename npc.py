@@ -13,17 +13,20 @@ class Npc(object):
 		self.boolAlle = True
 		# On charge les images pour les differentes positions
 		self.img_bas = pygame.image.load(img_bas).convert_alpha()
-
 		#imageDirection par defaut
 		self.imageDirection = self.img_bas
-
 		#Position du personnage en cases et en pixels
 		self.rectNpc = self.imageDirection.get_rect()
 		self.rectNpc = self.rectNpc.move(positionX, positionY)
 
+		self.alive = True
+
 	def event(self, tileMap, camera):
 		if self.rectNpc.colliderect(self.hero.rectPerso):
 			print "Collision"
+		if len(self.hero.bullets_array) > 0:
+			if self.rectNpc.colliderect(self.hero.bullets_array[0].projectileRect):
+				self.alive = False
 
 		self.animationNpc(tileMap)
 		self.screen.blit(self.imageDirection, camera.apply(self.rectNpc))

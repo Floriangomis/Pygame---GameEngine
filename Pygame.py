@@ -57,7 +57,9 @@ while continuer:
 	camera.update(perso)
 	#On gere le Perso Ici (Mouvement et affichage a l ecran)
 	perso.event(tileMap, camera)
-	Npc.event(tileMap, camera)
+	
+	if Npc.alive == True:
+		Npc.event(tileMap, camera)
 
 	#Souris position
 	#mouse_pos = pygame.mouse.get_pos()
