@@ -31,7 +31,7 @@ class Perso(object):
 
 		# Le projectile lie au hero
 		self.bullets_array = []
-		self.maxBullet = 1
+		self.maxBullet = 6
 
 	def event(self, tileMap, camera):
 		for event in pygame.event.get():
